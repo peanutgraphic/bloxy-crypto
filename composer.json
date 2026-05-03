@@ -1,0 +1,51 @@
+{
+    "name": "peanutgraphic/bloxy-crypto",
+    "description": "BLOXY zero-knowledge envelope-encryption primitive — client-held KEK, per-record DEKs, BIP39 recovery, MOCK mode for seeders. Server stores opaque ciphertext only.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["bloxy", "laravel", "crypto", "envelope-encryption", "zero-knowledge"],
+    "require": {
+        "php": "^8.3",
+        "ext-sodium": "*",
+        "illuminate/contracts": "^12.0",
+        "illuminate/support": "^12.0",
+        "peanutgraphic/bloxy-core": "*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.0",
+        "pestphp/pest": "^3.0",
+        "pestphp/pest-plugin-laravel": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bloxy\\Crypto\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bloxy\\Crypto\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Bloxy\\Crypto\\BloxyCryptoServiceProvider"
+            ]
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../core-php",
+            "options": { "symlink": true }
+        }
+    ],
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
