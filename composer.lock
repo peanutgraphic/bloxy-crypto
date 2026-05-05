@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "63ad2951c950472df0a7f3643d0ad8b9",
+    "content-hash": "bde5ff5976009e911cefb750b5778a97",
     "packages": [
         {
             "name": "brick/math",
@@ -2409,11 +2409,11 @@
         },
         {
             "name": "peanutgraphic/bloxy-core",
-            "version": "dev-feat/b1-8-0-crypto",
+            "version": "dev-main",
             "dist": {
                 "type": "path",
                 "url": "../core-php",
-                "reference": "9a0fc3972b6a2188e7cfa421ec0e55f71e68772c"
+                "reference": "fc82f76edeaa9cc70a360863643585a45d32e350"
             },
             "require": {
                 "illuminate/contracts": "^12.0",
@@ -2421,9 +2421,15 @@
                 "php": "^8.3"
             },
             "require-dev": {
+                "anthropic-ai/sdk": "^0.17",
+                "inertiajs/inertia-laravel": "^3.0",
                 "orchestra/testbench": "^10.0",
                 "pestphp/pest": "^3.0",
                 "pestphp/pest-plugin-laravel": "^3.0"
+            },
+            "suggest": {
+                "anthropic-ai/sdk": "Required if you bind AnthropicAgentRunner via Bloxy\\Core\\Agent\\AgentRunner. Not needed for NaiveRunner.",
+                "inertiajs/inertia-laravel": "Required if you bind ShareAgentsWithInertia middleware. Not needed otherwise."
             },
             "type": "library",
             "extra": {
@@ -9799,7 +9805,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": {
+        "peanutgraphic/bloxy-core": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
