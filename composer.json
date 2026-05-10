@@ -2,7 +2,7 @@
     "name": "peanutgraphic/bloxy-crypto",
     "description": "BLOXY zero-knowledge envelope-encryption primitive — client-held KEK, per-record DEKs, BIP39 recovery, MOCK mode for seeders. Server stores opaque ciphertext only.",
     "type": "library",
-    "license": "MIT",
+    "license": "proprietary",
     "keywords": ["bloxy", "laravel", "crypto", "envelope-encryption", "zero-knowledge"],
     "require": {
         "php": "^8.3",
