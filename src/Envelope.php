@@ -62,4 +62,28 @@ final class Envelope
             }
         }
     }
+
+    /**
+     * Decode a JSON-encoded envelope (or envelope-bearing payload) from a
+     * database column. Throws PlaintextRejectedException::corruptColumn
+     * naming the offending attribute on malformed JSON.
+     *
+     * Shared between EnvelopeEncrypted and EnvelopeEncryptedJson casts so
+     * the JsonException-to-domain-exception wrapper isn't duplicated.
+     */
+    public static function decodeOrFail(string $key, ?string $json): array
+    {
+        if ($json === null) {
+            throw PlaintextRejectedException::corruptColumn($key, 'value is NULL');
+        }
+        try {
+            $decoded = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+        } catch (\JsonException $e) {
+            throw PlaintextRejectedException::corruptColumn($key, $e->getMessage());
+        }
+        if (! is_array($decoded)) {
+            throw PlaintextRejectedException::corruptColumn($key, 'decoded value is not an array');
+        }
+        return $decoded;
+    }
 }

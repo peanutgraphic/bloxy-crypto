@@ -28,17 +28,9 @@ class EnvelopeEncryptedJson implements CastsAttributes
             return null;
         }
 
-        try {
-            $decoded = json_decode((string) $value, true, 512, JSON_THROW_ON_ERROR);
-        } catch (\JsonException $e) {
-            throw PlaintextRejectedException::corruptColumn($key, $e->getMessage());
-        }
+        $decoded = Envelope::decodeOrFail($key, (string) $value);
 
-        if (! is_array($decoded)) {
-            throw PlaintextRejectedException::notAnEnvelope(gettype($decoded));
-        }
-
-        foreach ($decoded as $field => $envelope) {
+        foreach ($decoded as $envelope) {
             Envelope::validate($envelope);
         }
 
