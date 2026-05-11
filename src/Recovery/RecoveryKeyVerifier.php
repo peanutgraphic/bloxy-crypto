@@ -57,6 +57,28 @@ class RecoveryKeyVerifier
             SODIUM_BASE64_VARIANT_URLSAFE_NO_PADDING
         );
 
+        // S-22 (Pass 2 M4): defense-in-depth length check. The column is
+        // varchar(32) but a 16-byte Argon2id output base64url-encodes to
+        // exactly 22 chars. If the stored value is ever a different
+        // length (corrupted row, future migration extending the column,
+        // operator error), hash_equals's documented short-circuit on
+        // length mismatch produces a fast-false that's distinguishable
+        // via timing. Detect the mismatch explicitly and log it; the
+        // function still returns false but the cause is observable.
+        $expectedLen = 22;
+        if (strlen((string) $row->recovery_verifier_hash) !== $expectedLen) {
+            \Illuminate\Support\Facades\Log::error(
+                'bloxy-crypto: recovery_verifier_hash has unexpected length',
+                [
+                    'user_type' => $row->user_type,
+                    'user_id' => $row->user_id,
+                    'expected_len' => $expectedLen,
+                    'actual_len' => strlen((string) $row->recovery_verifier_hash),
+                ],
+            );
+            return false;
+        }
+
         return hash_equals($row->recovery_verifier_hash, $candidateB64);
     }
 }

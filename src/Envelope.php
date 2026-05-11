@@ -52,6 +52,19 @@ final class Envelope
             }
         }
 
+        // S-20 (Pass 2 M4): reject envelopes carrying keys beyond the
+        // canonical 4. An attacker who can write to the DB or intercept
+        // JSON in flight could inject extras (e.g. `"alg": "none"`); if
+        // any downstream pattern-matches on envelope contents, that's a
+        // silent attack surface. Strict shape now: exactly the four
+        // SHAPE_KEYS, nothing else.
+        if (count($value) !== count(self::SHAPE_KEYS)) {
+            $extras = array_diff(array_keys($value), self::SHAPE_KEYS);
+            throw PlaintextRejectedException::invalidField(
+                'extra keys: ' . implode(', ', array_map('strval', $extras))
+            );
+        }
+
         if (! is_int($value['v']) || $value['v'] !== self::CURRENT_VERSION) {
             throw PlaintextRejectedException::invalidVersion($value['v']);
         }
