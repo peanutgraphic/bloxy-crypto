@@ -1,0 +1,13 @@
+{
+    "kek_b64url": "AwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM",
+    "dek_b64url": "BAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ",
+    "data_nonce_b64url": "BQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUF",
+    "wrap_nonce_b64url": "BgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYG",
+    "plaintext": "hello cross-language world",
+    "envelope": {
+        "v": 1,
+        "nonce": "BQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUF",
+        "ciphertext": "fDCZ6AnttR_s65R7oKOnxlMgUdgPkmTrUTftLXlM48UnEC2pGz6jRBJe",
+        "wrapped_dek": "BgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYG7Pdy-5svHpxM0zE_Gkhr_I8gEtyuH8vlUmUXHi7kuS3jRfp-AvRkfNlH_k4GOnho"
+    }
+}

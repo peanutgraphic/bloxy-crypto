@@ -1,0 +1,7 @@
+{
+    "_comment": "Cross-language byte-parity fixture. Fixed inputs produce a fixed secretbox ciphertext. PHP libsodium-ext + JS libsodium-wrappers-sumo MUST agree byte-for-byte against the value below.",
+    "key_b64url": "AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQE",
+    "nonce_b64url": "AgICAgICAgICAgICAgICAgICAgICAgIC",
+    "plaintext": "the quick brown fox jumps over the lazy dog",
+    "ciphertext_b64url": "Pg2gBh04jJTWo5kcs092kokNu90PT7suC13VjDcx047OOWKun909GzO0_tda9vgHx9A2AqeW71mnIwY"
+}
